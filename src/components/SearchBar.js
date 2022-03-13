@@ -17,11 +17,12 @@ const SearchBar = ({setInputField}) => {
 
     return (
         <form className="search-bar" onSubmit={searchSubmit}>
-            <img src={SearchLogo} alt="magnifying glass logo"></img>
+            <img className="search-icon" src={SearchLogo} alt="magnifying glass logo"></img>
             <TextField
+                className="search-field"
+                variant="filled"
                 id="outlined-basic"
                 onChange={searchChangeHandler}
-                variant="outlined"
                 label="Search"
             />
         </form>

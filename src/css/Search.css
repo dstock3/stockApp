@@ -1,0 +1,26 @@
+.search-bar {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 15%;
+    height: 45px;
+    border: 2px solid #1976d2;
+    border-radius: 6px;
+    padding: 15px;
+    background: rgb(166,191,244);
+    background: -moz-linear-gradient(90deg, rgba(166,191,244,1) 0%, rgba(66,135,204,1) 67%);
+    background: -webkit-linear-gradient(90deg, rgba(166,191,244,1) 0%, rgba(66,135,204,1) 67%);
+    background: linear-gradient(90deg, rgba(166,191,244,1) 0%, rgba(66,135,204,1) 67%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a6bff4",endColorstr="#4287cc",GradientType=1);
+}
+
+.search-field {
+    background-color: white;
+    border-radius: 6px;
+}
+
+.search-icon {
+    height: 30px;
+    margin-right: 15px;
+}

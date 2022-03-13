@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 const MarketRow = ({sym, index}) => {
     const [stockData, setStockData] = useState(null)
     useEffect(()=> {
-
         if (sym) {
             const apiKey = 'EFBSPV0418NR9CSL'
         
