@@ -4,25 +4,26 @@ import MarketRow from './components/MarketRow';
 import SearchBar from './components/SearchBar';
 
 const App = () => {
-  const [inputText, setInputText] = useState("");
-  
+  const [inputField, setInputField] = useState("");
+
   return (
     <div className="App">
       
-      <SearchBar setInputText={setInputText}/>
+      <SearchBar setInputField={setInputField}/>
 
-      {/*
       <table className="primary-table">
         <tbody className="markets">
+          <MarketRow sym={inputField} index={`Search Results: ${inputField}`}/>
+           {/*
           <MarketRow sym="DOW" index="Dow Jones Industrial Average"/>
           <MarketRow sym="NASDAQ:^IXIC" index="Nasdaq Composite"/>
           <MarketRow sym="GSPC" index="S&P 500"/>
           <MarketRow sym="GDOW"/>
           <MarketRow sym="GC00"/>
           <MarketRow sym="CL.1"/>
+          */}
         </tbody>
       </table>
-      */}
     </div>
   );
 }

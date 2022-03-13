@@ -3,33 +3,36 @@ import React, { useEffect, useState } from 'react'
 const MarketRow = ({sym, index}) => {
     const [stockData, setStockData] = useState(null)
     useEffect(()=> {
-        const apiKey = 'EFBSPV0418NR9CSL'
+
+        if (sym) {
+            const apiKey = 'EFBSPV0418NR9CSL'
         
-        let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
-        
-        fetch(apiCall)
-            .then(
-                function(response) {
-                    return response.json()
-                }
-            )
-            .then(
-                function(data) {
-                    let metadata = data["Meta Data"]
-                    let current = metadata["3. Last Refreshed"]
-                    let timeSeries = data["Time Series (Daily)"]
-                    let currentData
-                    
-                    
-                    for (let prop in timeSeries) {
-                        if (prop === current) {
-                            currentData = timeSeries[prop]
-                            setStockData(currentData)
+            let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
+            
+            fetch(apiCall)
+                .then(
+                    function(response) {
+                        return response.json()
+                    }
+                )
+                .then(
+                    function(data) {
+                        let metadata = data["Meta Data"]
+                        let current = metadata["3. Last Refreshed"]
+                        let timeSeries = data["Time Series (Daily)"]
+                        let currentData
+                        
+                        
+                        for (let prop in timeSeries) {
+                            if (prop === current) {
+                                currentData = timeSeries[prop]
+                                setStockData(currentData)
+                            }
                         }
                     }
-                }
-            )
-    }, [])
+                )
+        }
+    }, [sym])
 
     if (stockData) {
         return (

@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import SearchLogo from "../assets/search.svg";
 import "../css/Search.css";
 
 const SearchBar = ({setInputField}) => {
-    const searchHandler = (e) => {
-        let searchTerm = e.target.value.toLowerCase();
-        setInputField(searchTerm);
+    const [searchField, setSearchField] = useState("")
+
+    const searchChangeHandler = e => {
+        setSearchField(e.target.value);
     };
 
+    const searchSubmit = e => {
+        setInputField(searchField);
+        e.preventDefault();
+    }
+
     return (
-        <div className="search-bar">
-        <img src={SearchLogo} alt="magnifying glass logo"></img>
-        <TextField
-            id="outlined-basic"
-            onChange={searchHandler}
-            variant="outlined"
-            label="Search"
-        />
-        </div>
+        <form className="search-bar" onSubmit={searchSubmit}>
+            <img src={SearchLogo} alt="magnifying glass logo"></img>
+            <TextField
+                id="outlined-basic"
+                onChange={searchChangeHandler}
+                variant="outlined"
+                label="Search"
+            />
+        </form>
     );
 };
 
