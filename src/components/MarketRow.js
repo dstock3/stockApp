@@ -19,7 +19,7 @@ const MarketRow = ({sym, index}) => {
                     let current = metadata["3. Last Refreshed"]
                     let timeSeries = data["Time Series (Daily)"]
                     let currentData
-                    console.log(data)
+                    
                     
                     for (let prop in timeSeries) {
                         if (prop === current) {
