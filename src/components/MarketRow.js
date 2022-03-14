@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 const MarketRow = ({sym, index}) => {
     const [stockData, setStockData] = useState(null)
+    const [xValues, setXValues] = useState([])
+    const [yValues, setYValues] = useState([])
+
     useEffect(()=> {
         if (sym) {
-            console.log(sym)
             const apiKey = 'EFBSPV0418NR9CSL'
         
             let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
@@ -17,18 +19,23 @@ const MarketRow = ({sym, index}) => {
                 )
                 .then(
                     function(data) {
-                        console.log(data)
                         let metadata = data["Meta Data"]
                         let current = metadata["3. Last Refreshed"].slice(0,10);
                         let timeSeries = data["Time Series (Daily)"]
                         let currentData
+                        let xValuesArray = []
+                        let yValuesArray = []
                         
                         for (let prop in timeSeries) {
                             if (prop === current) {
                                 currentData = timeSeries[prop]
                                 setStockData(currentData)
                             }
+                            xValuesArray.push(prop)
+                            yValuesArray.push(timeSeries[prop]["1. open"])
                         }
+                        setXValues(xValuesArray)
+                        setYValues(yValuesArray)
                     }
                 )
         }
@@ -38,11 +45,11 @@ const MarketRow = ({sym, index}) => {
         return (
             <tr className="index">
                 <td className="name">{index}</td>
-                <td className="open">{stockData["1. open"]}</td>
-                <td className="high">{stockData["2. high"]}</td>
-                <td className="low">{stockData["3. low"]}</td>
-                <td className="close">{stockData["4. close"]}</td>
-                <td className="vol">{stockData["5. volume"]}</td>
+                <td className="open">Open: {stockData["1. open"]}</td>
+                <td className="high">High: {stockData["2. high"]}</td>
+                <td className="low">Low: {stockData["3. low"]}</td>
+                <td className="close">Close: {stockData["4. close"]}</td>
+                <td className="vol">Volume: {stockData["5. volume"]}</td>
             </tr>
         )
     } else {
