@@ -4,6 +4,7 @@ const MarketRow = ({sym, index}) => {
     const [stockData, setStockData] = useState(null)
     useEffect(()=> {
         if (sym) {
+            console.log(sym)
             const apiKey = 'EFBSPV0418NR9CSL'
         
             let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
@@ -16,11 +17,11 @@ const MarketRow = ({sym, index}) => {
                 )
                 .then(
                     function(data) {
+                        console.log(data)
                         let metadata = data["Meta Data"]
-                        let current = metadata["3. Last Refreshed"]
+                        let current = metadata["3. Last Refreshed"].slice(0,10);
                         let timeSeries = data["Time Series (Daily)"]
                         let currentData
-                        
                         
                         for (let prop in timeSeries) {
                             if (prop === current) {
