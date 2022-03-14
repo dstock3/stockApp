@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Plot from 'react-plotly.js';
 
-const MarketRow = ({sym, index}) => {
+const MarketRow = ({sym, setXValues, setYValues, index}) => {
     const [stockData, setStockData] = useState(null)
-    const [xValues, setXValues] = useState([])
-    const [yValues, setYValues] = useState([])
 
     useEffect(()=> {
         if (sym) {
@@ -44,7 +42,6 @@ const MarketRow = ({sym, index}) => {
 
     if (stockData) {
         return (
-            <>
             <tr className="index">
                 <td className="name">{index}</td>
                 <td className="open">Open: {stockData["1. open"]}</td>
@@ -53,18 +50,6 @@ const MarketRow = ({sym, index}) => {
                 <td className="close">Close: {stockData["4. close"]}</td>
                 <td className="vol">Volume: {stockData["5. volume"]}</td>
             </tr>
-            <Plot
-                data={[
-                {
-                    x: xValues,
-                    y: yValues,
-                    type: 'scatter',
-                    mode: 'lines+markers',
-                    marker: {color: 'blue'},
-                }]}
-                layout={ {width: 720, height: 440, title: {sym}} }
-            />
-            </>
         )
     } else {
         return null
