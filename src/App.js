@@ -11,14 +11,14 @@ const App = () => {
 
   return (
     <div className="App">
-      
-      <SearchBar setInputField={setInputField} />
+      <nav>
+        <SearchBar setInputField={setInputField} />
+      </nav>
+
 
       <table className="primary-table">
         <tbody className="markets">
           <MarketRow sym={inputField} index={`Search Results: ${inputField}`} setXValues={setXValues} setYValues={setYValues}/>
-          <NewPlot label={inputField} xValues={xValues} yValues={yValues} />
-
            {/*
           <MarketRow sym="DOW" index="Dow Jones Industrial Average"/>
           <MarketRow sym="NASDAQ:^IXIC" index="Nasdaq Composite"/>
@@ -27,9 +27,14 @@ const App = () => {
           <MarketRow sym="GC00"/>
           <MarketRow sym="CL.1"/>
           */}
-
         </tbody>
       </table>
+
+      <main>
+        <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} />
+      </main>
+      
+
     </div>
   );
 }
