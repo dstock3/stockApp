@@ -16,11 +16,22 @@ const NewPlot = ({className, label, xValues, yValues}) => {
         
     }, [range])
 
-    const rangeSelect = (n, buttonClass) => {
+    const rangeSelect = (n, buttonIndex) => {
         let newXRange = xValues.slice(0, n)
         let newYRange = yValues.slice(0, n)
 
         setRange({xValues: newXRange, yValues: newYRange})
+
+        let newArray = buttonArray;
+
+        newArray[buttonIndex] = "selected";
+
+        for (let i = 0; i < newArray.length; i++) {
+            if (i !== buttonIndex) {
+                newArray[i] = ""
+            }
+        }
+        setButtonArray(newArray)
     }
 
     if (label) {
@@ -39,11 +50,12 @@ const NewPlot = ({className, label, xValues, yValues}) => {
                     }]}
                     layout={ {width: 720, height: 440, title: {label}} }
                 />
+
                 <div className="range-button-container">
-                    <button className={buttonArray[0]} onClick={() => rangeSelect(5, buttonArray[0])}>5 Day</button>
-                    <button className={buttonArray[1]} onClick={() => rangeSelect(30, buttonArray[1])}>1 Month</button>
-                    <button className={buttonArray[2]} onClick={() => rangeSelect(90, buttonArray[2])}>3 Months</button>
-                    <button className={buttonArray[3]} onClick={() => rangeSelect(xValues.length - 1, buttonArray[3])}>Max Range</button>
+                    <button className={`range-button ${buttonArray[0]}`} onClick={() => rangeSelect(5, 0)}>5 Day</button>
+                    <button className={`range-button ${buttonArray[1]}`} onClick={() => rangeSelect(30, 1)}>1 Month</button>
+                    <button className={`range-button ${buttonArray[2]}`} onClick={() => rangeSelect(90, 2)}>3 Months</button>
+                    <button className={`range-button ${buttonArray[3]}`} onClick={() => rangeSelect(xValues.length - 1, 3)}>Max Range</button>
                 </div>
             </div>
         )
