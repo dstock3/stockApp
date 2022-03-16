@@ -9,6 +9,21 @@
     padding: 10px;
 }
 
+.plot-container button {
+    background-color: #1976d2;
+    color: white;
+    padding: 5px;
+    padding-inline: 7px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px#0a2e52b6;
+    cursor: pointer;
+}
+
+.selected {
+    font-weight: bold;
+}
+
 .range-button-container {
     margin-top: 7px;
     display: flex;

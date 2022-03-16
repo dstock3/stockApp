@@ -4,6 +4,7 @@ import '../css/Plot.css'
 
 const NewPlot = ({className, label, xValues, yValues}) => {
     const [range, setRange] = useState({xValues, yValues});
+    const [buttonArray, setButtonArray] = useState(["", "", "", "selected"])
 
     useEffect(()=> {
         setRange({xValues, yValues});
@@ -15,7 +16,7 @@ const NewPlot = ({className, label, xValues, yValues}) => {
         
     }, [range])
 
-    const rangeSelect = n => {
+    const rangeSelect = (n, buttonClass) => {
         let newXRange = xValues.slice(0, n)
         let newYRange = yValues.slice(0, n)
 
@@ -39,10 +40,10 @@ const NewPlot = ({className, label, xValues, yValues}) => {
                     layout={ {width: 720, height: 440, title: {label}} }
                 />
                 <div className="range-button-container">
-                    <button onClick={() => rangeSelect(5)}>5 Day</button>
-                    <button onClick={() => rangeSelect(30)}>1 Month</button>
-                    <button onClick={() => rangeSelect(90)}>3 Months</button>
-                    <button onClick={() => rangeSelect(xValues.length - 1)}>Max Range</button>
+                    <button className={buttonArray[0]} onClick={() => rangeSelect(5, buttonArray[0])}>5 Day</button>
+                    <button className={buttonArray[1]} onClick={() => rangeSelect(30, buttonArray[1])}>1 Month</button>
+                    <button className={buttonArray[2]} onClick={() => rangeSelect(90, buttonArray[2])}>3 Months</button>
+                    <button className={buttonArray[3]} onClick={() => rangeSelect(xValues.length - 1, buttonArray[3])}>Max Range</button>
                 </div>
             </div>
         )
