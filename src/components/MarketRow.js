@@ -31,7 +31,7 @@ const MarketRow = ({sym, setXValues, setYValues, index}) => {
                                 setStockData(currentData)
                             }
                             xValuesArray.push(prop)
-                            yValuesArray.push(timeSeries[prop]["1. open"])
+                            yValuesArray.push(timeSeries[prop]["4. close"])
                         }
                         setXValues(xValuesArray)
                         setYValues(yValuesArray)
