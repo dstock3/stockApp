@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
+import './css/Reset.css';
 import './App.css';
+import HeadTable from './components/HeadTable';
 import MarketRow from './components/MarketRow';
 import NewPlot from './components/NewPlot';
 import SearchBar from './components/SearchBar';
@@ -11,10 +13,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <nav>
-        <SearchBar setInputField={setInputField} />
+      <nav className="head-nav">
+        
+        <div className="head-subcontanier">
+          <h1 className="head-title">MarketQuest</h1>
+          <SearchBar setInputField={setInputField} />
+        </div>
+        
+        <HeadTable />
       </nav>
-
 
       <table className="primary-table">
         <tbody className="markets">

@@ -43,12 +43,14 @@ const MarketRow = ({sym, setXValues, setYValues, index}) => {
     if (stockData) {
         return (
             <tr className="index">
+                {/*
                 <td className="name">{index}</td>
                 <td className="open">Open: {stockData["1. open"]}</td>
                 <td className="high">High: {stockData["2. high"]}</td>
                 <td className="low">Low: {stockData["3. low"]}</td>
                 <td className="close">Close: {stockData["4. close"]}</td>
                 <td className="vol">Volume: {stockData["5. volume"]}</td>
+                */}
             </tr>
         )
     } else {
