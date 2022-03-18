@@ -17,7 +17,7 @@ const SearchBar = ({setInputField}) => {
 
     return (
         <form className="search-bar" onSubmit={searchSubmit}>
-            <img className="search-icon" src={SearchLogo} alt="magnifying glass logo"></img>
+            <img onClick={searchSubmit} className="search-icon" src={SearchLogo} alt="magnifying glass logo"></img>
             <TextField
                 className="search-field"
                 variant="filled"

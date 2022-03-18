@@ -13,7 +13,6 @@ const App = () => {
 
   useEffect(()=> {
     document.title = "MarketQuest";
-
   }, [])
 
   return (
