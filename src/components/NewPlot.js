@@ -5,11 +5,19 @@ import '../css/Plot.css'
 const NewPlot = ({className, label, xValues, yValues}) => {
     const [range, setRange] = useState({xValues, yValues});
     const [buttonArray, setButtonArray] = useState(["", "", "", "selected"])
+    const [plotDim, setPlotDim] = useState({width: 720, height: 440})
 
     useEffect(()=> {
         setRange({xValues, yValues});
 
     }, [xValues, yValues])
+
+    useEffect(()=> {
+        const media = window.matchMedia("(max-width: 700px)")
+        if (media.matches) {
+            setPlotDim({width: 360, height: 220})
+        }
+    }, [])
 
     const rangeSelect = (n, buttonIndex) => {
         let newXRange = xValues.slice(0, n)
@@ -41,9 +49,9 @@ const NewPlot = ({className, label, xValues, yValues}) => {
                         y: range.yValues,
                         type: 'scatter',
                         mode: 'lines+markers',
-                        marker: {color: 'blue'},
+                        marker: {color: '#1976d2'},
                     }]}
-                    layout={ {width: 720, height: 440, title: {label}} }
+                    layout={ {width: plotDim.width, height: plotDim.height, title: {label}} }
                 />
 
                 <div className="range-button-container">
