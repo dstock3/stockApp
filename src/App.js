@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './css/Reset.css';
 import './App.css';
 import HeadTable from './components/HeadTable';
@@ -11,15 +11,18 @@ const App = () => {
   const [xValues, setXValues] = useState([])
   const [yValues, setYValues] = useState([])
 
+  useEffect(()=> {
+    document.title = "MarketQuest";
+
+  }, [])
+
   return (
     <div className="App">
       <nav className="head-nav">
-        
         <div className="head-subcontanier">
           <h1 className="head-title">MarketQuest</h1>
           <SearchBar setInputField={setInputField} />
         </div>
-        
         <HeadTable />
       </nav>
 
