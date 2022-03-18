@@ -11,11 +11,6 @@ const NewPlot = ({className, label, xValues, yValues}) => {
 
     }, [xValues, yValues])
 
-    useEffect(()=> {
-        console.log(range)
-        
-    }, [range])
-
     const rangeSelect = (n, buttonIndex) => {
         let newXRange = xValues.slice(0, n)
         let newYRange = yValues.slice(0, n)
