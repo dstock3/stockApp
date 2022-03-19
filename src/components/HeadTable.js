@@ -25,16 +25,13 @@ const HeadTable = () => {
           <TableBody>
             {rows.map((row) => (
               <TableRow
-                key={row.name}
+                key={row.sym}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.sym}</TableCell>
-                <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.change}</TableCell>
-                <TableCell align="right">{row.arrow}</TableCell>
+                <TableCell align="left">{row.sym}</TableCell>
+                <TableCell align="left">{row.price}</TableCell>
+                <TableCell align="left">{row.change}</TableCell>
+                <TableCell align="left">{row.arrow}</TableCell>
               </TableRow>
             ))}
           </TableBody>
