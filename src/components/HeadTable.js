@@ -19,8 +19,7 @@ const rows = [
 
 const HeadTable = () => {
   return (
-    <div className="head-table-container">
-      <TableContainer component={Paper}>
+      <TableContainer id="head-table-container" component={Paper}>
         <Table sx={{ minWidth: 150 }} aria-label="simple table">
           <TableBody>
             {rows.map((row) => (
@@ -37,7 +36,6 @@ const HeadTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
   )
 }
 
