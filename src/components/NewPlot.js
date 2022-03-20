@@ -37,7 +37,7 @@ const NewPlot = ({className, label, xValues, yValues, errorState}) => {
         setButtonArray(newArray)
     }
 
-    if (label && (xValues.length > 0)) {
+    if (label && (!errorState)) {
         return (
             <div className="plot-container">
                 <h2 className="plot-label">{label}</h2>

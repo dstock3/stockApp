@@ -47,3 +47,9 @@
     justify-content:space-around;
     width: 50%;
 }
+
+@media only screen and (max-width: 800px) {
+    .range-button {
+        margin-right: 5px;
+    }
+}
