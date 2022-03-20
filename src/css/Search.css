@@ -20,8 +20,21 @@
     border-radius: 6px;
 }
 
-.search-icon {
-    height: 30px;
+.search-button {
+    height: 35px;
+    width: 40px;
+    background-color: #125495;
+    border-radius: 50%;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 15px;
+    box-shadow: 1px 1px 1px 1px #0000005e;
+}
+
+.search-icon {
+    height: 15px;
     cursor: pointer;
+    margin: auto;
 }
