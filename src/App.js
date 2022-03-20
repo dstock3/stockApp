@@ -10,6 +10,7 @@ const App = () => {
   const [inputField, setInputField] = useState("");
   const [xValues, setXValues] = useState([])
   const [yValues, setYValues] = useState([])
+  const [errorState, setErrorState] = useState(false)
 
   useEffect(()=> {
     document.title = "MarketQuest";
@@ -27,7 +28,7 @@ const App = () => {
 
       <table className="primary-table">
         <tbody className="markets">
-          <MarketRow sym={inputField} index={`Search Results: ${inputField}`} setXValues={setXValues} setYValues={setYValues}/>
+          <MarketRow sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState}/>
            {/*
           <MarketRow sym="DOW" index="Dow Jones Industrial Average"/>
           <MarketRow sym="NASDAQ:^IXIC" index="Nasdaq Composite"/>
@@ -40,10 +41,9 @@ const App = () => {
       </table>
 
       <main>
-        <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} />
+        <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} />
       </main>
       
-
     </div>
   );
 }

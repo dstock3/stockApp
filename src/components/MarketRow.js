@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Plot from 'react-plotly.js';
 
-const MarketRow = ({sym, setXValues, setYValues, index}) => {
+const MarketRow = ({sym, setXValues, setYValues, setErrorState}) => {
     const [stockData, setStockData] = useState(null)
-
+   
     useEffect(()=> {
         if (sym) {
             const apiKey = 'EFBSPV0418NR9CSL'
@@ -35,6 +34,13 @@ const MarketRow = ({sym, setXValues, setYValues, index}) => {
                         }
                         setXValues(xValuesArray)
                         setYValues(yValuesArray)
+                    }
+                )
+                .catch(
+                    function(err) {
+                        console.log(err)
+                        setErrorState(true)
+
                     }
                 )
         }
