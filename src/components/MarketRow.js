@@ -34,6 +34,7 @@ const MarketRow = ({sym, setXValues, setYValues, setErrorState}) => {
                         }
                         setXValues(xValuesArray)
                         setYValues(yValuesArray)
+                        setErrorState(false)
                     }
                 )
                 .catch(
