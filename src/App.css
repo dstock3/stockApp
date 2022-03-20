@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(199, 213, 241);
+
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -7,8 +12,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 175px;
+    height: 185px;
     width: 100vw;
     background-color: rgb(199, 213, 241);
+    border-bottom: 2px solid #1976d2;;
     box-shadow: 0px 2px 0px 0px #0000005e;
 }
