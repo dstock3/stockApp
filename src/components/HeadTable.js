@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { cloneElement, useState } from 'react'
 import '../css/HeadTable.css'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,31 +6,33 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-function createData(sym, price, change, percent, arrow) {
-  return { sym, price, change, percent, arrow };
-}
-
-const rows = [
-  createData('Dow', 34754, 274.17, 0.80, "up"),
-  createData('S&P 500', 4463, 51.45, 1.17, "up"),
-  createData('Nasdaq', 13893, 279, 2.05, "up"),
-];
+import LineGoesUp from '../assets/up.svg'
+import LineGoesDown from '../assets/down.svg'
 
 const HeadTable = () => {
+  const [dow, setDow] = useState({ sym: 'Dow', price: 34754, change: 0.80, percent: 0.80, arrow: "up" })
+  const [sp, setSp] = useState({ sym: 'S&P 500', price: 4463, change: 51.45, percent: 1.17, arrow: "up" })
+  const [nas, setNas] = useState({ sym: 'Nasdaq', price: 13893, change: 279, percent: 2.05, arrow: "up" })
+  const [indexes, setIndexes] = useState([dow, sp, nas])
+  const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "12px"})
+
   return (
       <TableContainer id="head-table-container" component={Paper}>
         <Table sx={{ minWidth: 150 }} aria-label="simple table">
           <TableBody>
-            {rows.map((row) => (
+            {indexes.map((index) => (
               <TableRow
-                key={row.sym}
+                key={index.sym}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="left">{row.sym}</TableCell>
-                <TableCell align="left">{row.price}</TableCell>
-                <TableCell align="left">{row.change}</TableCell>
-                <TableCell align="left">{row.arrow}</TableCell>
+                <TableCell style={cellStyle} align="left">{index.sym}</TableCell>
+                <TableCell style={cellStyle} align="left">{index.price}</TableCell>
+                <TableCell style={cellStyle} align="left">{index.change}</TableCell>
+                <TableCell style={cellStyle} align="left">{
+                  index.arrow==="up" ? 
+                    <img className="arrow-indicator" src={LineGoesUp} alt="trending up"></img> :
+                    <img className="arrow-indicator" src={LineGoesDown} alt="trending down"></img>
+                }</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -1,0 +1,31 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 75px;
+    background-color: #125495;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 0px 2px #0000005e;
+}
+
+.link-container {
+    margin: auto;
+    color: white;
+    width: fit-content;
+}
+
+.link-container ul {
+    display: flex;
+}
+
+.social-link {
+    text-decoration: none;
+    color: white;
+    margin-right: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.social-link:hover {
+    font-weight: bold;
+}
