@@ -6,6 +6,7 @@ import MarketRow from './components/MarketRow';
 import NewPlot from './components/NewPlot';
 import SearchBar from './components/SearchBar';
 import Footer from './components/Footer';
+import Sidebar from './components/Sidebar';
 
 const App = () => {
   const [inputField, setInputField] = useState("");
@@ -42,6 +43,8 @@ const App = () => {
       </table>
 
       <main>
+        <Sidebar />
+
         <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} />
       </main>
 

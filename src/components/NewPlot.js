@@ -65,13 +65,19 @@ const NewPlot = ({className, label, xValues, yValues, errorState}) => {
     } else if (errorState) {
         return (
             <div className="plot-container">
-                <div className="error-message">
+                <div className="message">
                     There was a problem retrieving the data you requested.
                 </div>
             </div>
         )
     } else {
-        return null
+        return(
+            <div className="plot-container">
+                <div className="message">
+                    Search a ticker symbol to get started.
+                </div>
+            </div>
+        )
     }
 }
 
