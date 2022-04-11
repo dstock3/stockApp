@@ -27,6 +27,8 @@ const Sidebar = ({setInputField}) => {
             Frequently Searched Stocks
         </h2>
 
+        <div className="dec-line"></div>
+
         <ul className="side-list">
             <li onClick={()=>setInputField("NVDA")} className="side-item">NVDA</li>
 
