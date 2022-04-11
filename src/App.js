@@ -43,7 +43,7 @@ const App = () => {
       </table>
 
       <main>
-        <Sidebar />
+        <Sidebar setInputField={setInputField} />
 
         <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} />
       </main>
