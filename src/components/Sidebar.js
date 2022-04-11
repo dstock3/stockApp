@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../css/Sidebar.css'
 
 const Sidebar = ({setInputField}) => {
+  
+  useEffect(()=> {
+    const sideItems = Array.from(document.querySelectorAll(".side-item"))
+
+    for (let i = 0; i < sideItems.length; i++) {
+      let sideItem = sideItems[i]
+
+      sideItem.addEventListener("click", function() {
+        for (let y = 0; y < sideItems.length; y++) {
+          sideItems[y].classList.remove("item-selected")
+        }
+
+        sideItem.classList.add("item-selected")
+      })
+    }
+
+  }, [])
+
 
   return (
     <div className="sidebar">
