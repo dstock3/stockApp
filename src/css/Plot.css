@@ -59,8 +59,6 @@
 @media only screen and (max-width: 800px) {
     .plot-container {
         width: 98%;
-        margin-bottom: 15px;
-
     }
 
     .range-button {
