@@ -19,7 +19,6 @@ const Sidebar = ({setInputField}) => {
             <li onClick={()=>setInputField("ENPH")} className="side-item">ENPH</li>
 
             <li onClick={()=>setInputField("MPWR")} className="side-item">MPWR</li>
-            
         </ul>
     </div>
   )

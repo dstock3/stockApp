@@ -16,5 +16,19 @@
 .side-head {
     text-align: center;
     margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+}
 
+.side-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.side-item {
+    font-size: 1.25em;
+    cursor: pointer;
+    margin-bottom: 15px;
 }
