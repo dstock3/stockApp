@@ -28,6 +28,10 @@ const Sidebar = ({setInputField}) => {
         </h2>
 
         <ul className="side-list">
+            <li onClick={()=>setInputField("NVDA")} className="side-item">NVDA</li>
+
+            <li onClick={()=>setInputField("IDXX")} className="side-item">IDXX</li>
+
             <li onClick={()=>setInputField("EPAM")} className="side-item">EPAM</li>
             
             <li onClick={()=>setInputField("CTRA")} className="side-item">CTRA</li>
