@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import './css/Reset.css';
 import './App.css';
 import HeadTable from './components/HeadTable';
-import MarketRow from './components/MarketRow';
 import NewPlot from './components/NewPlot';
 import SearchBar from './components/SearchBar';
 import Footer from './components/Footer';
@@ -20,31 +19,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <nav className="head-nav">
-        <div className="head-subcontanier">
+      <header className="head-nav">
+        <nav className="head-subcontanier">
           <h1 className="head-title">MarketQuest</h1>
-          <SearchBar setInputField={setInputField} />
-        </div>
+          <SearchBar setInputField={setInputField} sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState} />
+        </nav>
         <HeadTable />
-      </nav>
-
-      <table className="primary-table">
-        <tbody className="markets">
-          <MarketRow sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState}/>
-           {/*
-          <MarketRow sym="DOW" index="Dow Jones Industrial Average"/>
-          <MarketRow sym="NASDAQ:^IXIC" index="Nasdaq Composite"/>
-          <MarketRow sym="GSPC" index="S&P 500"/>
-          <MarketRow sym="GDOW"/>
-          <MarketRow sym="GC00"/>
-          <MarketRow sym="CL.1"/>
-          */}
-        </tbody>
-      </table>
+      </header>
 
       <main>
         <Sidebar setInputField={setInputField} />
-
         <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} />
       </main>
 

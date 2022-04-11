@@ -27,6 +27,10 @@
     margin-top: 15px;
 }
 
+.search-plot {
+    width: 98%;
+}
+
 .range-button {
     background-color: #125495;
     color: white;
@@ -54,6 +58,7 @@
 .message {
     margin-top: 15px;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 @media only screen and (max-width: 800px) {
