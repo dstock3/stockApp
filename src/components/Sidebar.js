@@ -24,7 +24,7 @@ const Sidebar = ({setInputField}) => {
   return (
     <div className="sidebar">
         <h2 className="side-head">
-            Frequently Search Stocks
+            Frequently Searched Stocks
         </h2>
 
         <ul className="side-list">
