@@ -27,6 +27,34 @@ main {
     box-shadow: 0px 2px 0px 0px #0000005e;
 }
 
+
+footer {
+    height: 100px;
+    background-color: #125495;
+    display: flex;
+    align-items: center;
+}
+
+.link-container {
+    margin: auto;
+    color: white;
+    width: fit-content;
+}
+
+.link-container ul {
+    display: flex;
+}
+
+.social-link {
+    text-decoration: none;
+    color: white;
+    margin-right: 25px;
+}
+
+.social-link:hover {
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 800px) {
     .head-nav {
         flex-direction: column;
@@ -38,6 +66,10 @@ main {
         justify-content: flex-start;
         align-items: center;
         margin-bottom: 35px;
+    }
+
+    footer {
+        height: 65px;
     }
     
 

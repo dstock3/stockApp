@@ -4,7 +4,6 @@ import './App.css';
 import HeadTable from './components/HeadTable';
 import NewPlot from './components/NewPlot';
 import SearchBar from './components/SearchBar';
-import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 
 const App = () => {
@@ -32,7 +31,14 @@ const App = () => {
         <NewPlot className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} />
       </main>
 
-      <Footer />
+      <footer>
+        <div className="link-container">
+            <ul>
+                <li><a className="social-link" href="https://github.com/dstock3/stockApp" target="_blank" rel="noopener noreferrer">Github</a></li>
+                <li><a className="social-link" href="https://dstock.biz/" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+            </ul>
+        </div>
+      </footer>
     </div>
   );
 }
