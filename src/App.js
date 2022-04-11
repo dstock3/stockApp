@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import './css/Reset.css';
 import './App.css';
 import HeadTable from './components/HeadTable';
@@ -11,10 +11,6 @@ const App = () => {
   const [xValues, setXValues] = useState([])
   const [yValues, setYValues] = useState([])
   const [errorState, setErrorState] = useState(false)
-
-  useEffect(()=> {
-    document.title = "MarketQuest";
-  }, [])
 
   return (
     <div className="App">
