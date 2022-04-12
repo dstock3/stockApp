@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../css/HeadTable.css'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,6 +15,36 @@ const HeadTable = () => {
   const [nas, setNas] = useState({ sym: 'Nasdaq', price: 13893, change: 279, percent: 2.05, arrow: "up" })
   const [indexes, setIndexes] = useState([dow, sp, nas])
   const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "12px"})
+
+  useEffect(()=> {
+    const apiKey = 'ce5445893c37418a9ee00568eb67e13c'
+
+    let apiCall = `https://api.twelvedata.com/time_series?symbol=AAPL,EUR/USD,ETH/BTC:Huobi,TRP:TSX&interval=1min&apikey=${apiKey}`
+
+    fetch(apiCall)
+      .then(
+          function(response) {
+              return response.json()
+          }
+      )
+      .then(
+          function(data) {
+            console.log(data)
+
+              
+
+          }
+      )
+      .catch(
+          function(err) {
+              console.log(err)
+              //setErrorState(true)
+
+          }
+      )
+  
+
+  }, [])
 
   return (
       <TableContainer id="head-table-container" component={Paper}>
