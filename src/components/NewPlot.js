@@ -9,6 +9,7 @@ const NewPlot = ({className, label, xValues, yValues, errorState}) => {
 
     useEffect(()=> {
         setRange({xValues, yValues});
+        setButtonArray(["", "", "", "selected"])
 
     }, [xValues, yValues])
 
