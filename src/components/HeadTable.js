@@ -10,16 +10,10 @@ import LineGoesUp from '../assets/up.svg'
 import LineGoesDown from '../assets/down.svg'
 
 const HeadTable = () => {
-  const [dow, setDow] = useState({ sym: 'Dow', price: 34754, change: 0.80, percent: 0.80, arrow: "up" })
-  const [sp, setSp] = useState({ sym: 'S&P 500', price: 4463, change: 51.45, percent: 1.17, arrow: "up" })
-  const [nas, setNas] = useState({ sym: 'Nasdaq', price: 13893, change: 279, percent: 2.05, arrow: "up" })
-  const [indexes, setIndexes] = useState([dow, sp, nas])
-  const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "12px"})
-
   useEffect(()=> {
     const apiKey = 'ce5445893c37418a9ee00568eb67e13c'
 
-    let apiCall = `https://api.twelvedata.com/time_series?symbol=AAPL,EUR/USD,ETH/BTC:Huobi,TRP:TSX&interval=1min&apikey=${apiKey}`
+    let apiCall = `https://api.twelvedata.com/time_series?symbol=DJI,SPX,NDAQ&interval=1day&apikey=${apiKey}`
 
     fetch(apiCall)
       .then(
@@ -29,9 +23,53 @@ const HeadTable = () => {
       )
       .then(
           function(data) {
-            console.log(data)
+            let DowData = {
+              yesterday: parseFloat(data.DJI.values[1].close),
+              today: parseFloat(data.DJI.values[0].close)
+            }
+            let dowArrowValue
+            let dowChangeValue
+            if (DowData.yesterday > DowData.today) {
+              dowArrowValue = "down"
+              dowChangeValue = DowData.yesterday - DowData.today
+            } else {
+              dowArrowValue = "up"
+              dowChangeValue = DowData.today - DowData.yesterday
+            }
 
-              
+            setDow({ sym: 'Dow', price: DowData.today, change: dowChangeValue.toFixed(2), percent: 0.80, arrow: dowArrowValue })
+
+            let nasData = {
+              yesterday: parseFloat(data.NDAQ.values[1].close),
+              today: parseFloat(data.NDAQ.values[0].close)
+            }
+            let nasArrowValue
+            let nasChangeValue
+            if (nasData.yesterday > nasData.today) {
+              nasArrowValue = "down"
+              nasChangeValue = nasData.yesterday - nasData.today
+            } else {
+              nasArrowValue = "up"
+              nasChangeValue = nasData.today - nasData.yesterday
+            }
+
+            setNas({ sym: 'Nasdaq', price: nasData.today, change: nasChangeValue.toFixed(2), percent: 2.05, arrow: nasArrowValue })
+
+            let spxData = {
+              yesterday: parseFloat(data.SPX.values[1].close),
+              today: parseFloat(data.SPX.values[0].close)
+            }
+            let spxArrowValue
+            let spxChangeValue
+            if (spxData.yesterday > spxData.today) {
+              spxArrowValue = "down"
+              spxChangeValue = spxData.yesterday - spxData.today
+            } else {
+              spxArrowValue = "up"
+              spxChangeValue = spxData.today - spxData.yesterday
+            }
+
+            setSp({ sym: 'Nasdaq', price: nasData.today, change: spxChangeValue.toFixed(2), percent: 2.05, arrow: spxArrowValue })
 
           }
       )
@@ -39,12 +77,16 @@ const HeadTable = () => {
           function(err) {
               console.log(err)
               //setErrorState(true)
-
           }
       )
   
-
   }, [])
+
+  const [dow, setDow] = useState({ sym: 'Dow', price: 34754, change: 0.80, percent: 0.80, arrow: "up" })
+  const [sp, setSp] = useState({ sym: 'S&P 500', price: 4463, change: 51.45, percent: 1.17, arrow: "up" })
+  const [nas, setNas] = useState({ sym: 'Nasdaq', price: 13893, change: 279, percent: 2.05, arrow: "up" })
+  const [indexes, setIndexes] = useState([dow, sp, nas])
+  const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "12px"})
 
   return (
       <TableContainer id="head-table-container" component={Paper}>
