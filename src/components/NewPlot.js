@@ -13,9 +13,9 @@ const NewPlot = ({className, label, xValues, yValues, errorState}) => {
     }, [xValues, yValues])
 
     useEffect(()=> {
-        const media = window.matchMedia("(max-width: 700px)")
+        const media = window.matchMedia("(max-width: 800px)")
         if (media.matches) {
-            setPlotDim({width: 360, height: 220})
+            setPlotDim({width: 345, height: 285})
         }
     }, [])
 
