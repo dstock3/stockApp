@@ -31,6 +31,16 @@
     height: 20px;
 }
 
+.up {
+    font-weight: bold;
+    color: green;
+}
+
+.down {
+    font-weight: bold;
+    color: red;
+}
+
 @media only screen and (max-width: 800px) {
     #head-table-container {
         margin-top: 15px;

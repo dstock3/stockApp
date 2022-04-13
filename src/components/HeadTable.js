@@ -10,6 +10,9 @@ import LineGoesUp from '../assets/up.svg'
 import LineGoesDown from '../assets/down.svg'
 
 const HeadTable = () => {
+  const [dow, setDow] = useState({ sym: 'Dow', price: null, change: null, percent: null, arrow: null })
+  const [sp, setSp] = useState({ sym: 'S&P 500', price: null, change: null, percent: null, arrow: null })
+  const [nas, setNas] = useState({ sym: 'Nasdaq', price: null, change: null, percent: null, arrow: null })
   useEffect(()=> {
     const apiKey = 'ce5445893c37418a9ee00568eb67e13c'
 
@@ -36,8 +39,8 @@ const HeadTable = () => {
               dowArrowValue = "up"
               dowChangeValue = DowData.today - DowData.yesterday
             }
-
-            setDow({ sym: 'Dow', price: DowData.today, change: dowChangeValue.toFixed(2), percent: 0.80, arrow: dowArrowValue })
+            
+            setDow({ sym: 'Dow', price: DowData.today.toFixed(2), change: dowChangeValue.toFixed(2), percent: 0.80, arrow: dowArrowValue })
 
             let nasData = {
               yesterday: parseFloat(data.NDAQ.values[1].close),
@@ -53,7 +56,7 @@ const HeadTable = () => {
               nasChangeValue = nasData.today - nasData.yesterday
             }
 
-            setNas({ sym: 'Nasdaq', price: nasData.today, change: nasChangeValue.toFixed(2), percent: 2.05, arrow: nasArrowValue })
+            setNas({ sym: 'Nasdaq', price: nasData.today.toFixed(2), change: nasChangeValue.toFixed(2), percent: 2.05, arrow: nasArrowValue })
 
             let spxData = {
               yesterday: parseFloat(data.SPX.values[1].close),
@@ -69,7 +72,7 @@ const HeadTable = () => {
               spxChangeValue = spxData.today - spxData.yesterday
             }
 
-            setSp({ sym: 'Nasdaq', price: nasData.today, change: spxChangeValue.toFixed(2), percent: 2.05, arrow: spxArrowValue })
+            setSp({ sym: 'S&P 500', price: spxData.today.toFixed(2), change: spxChangeValue.toFixed(2), percent: 2.05, arrow: spxArrowValue })
 
           }
       )
@@ -82,9 +85,11 @@ const HeadTable = () => {
   
   }, [])
 
-  const [dow, setDow] = useState({ sym: 'Dow', price: 34754, change: 0.80, percent: 0.80, arrow: "up" })
-  const [sp, setSp] = useState({ sym: 'S&P 500', price: 4463, change: 51.45, percent: 1.17, arrow: "up" })
-  const [nas, setNas] = useState({ sym: 'Nasdaq', price: 13893, change: 279, percent: 2.05, arrow: "up" })
+  useEffect(() => {
+    setIndexes([dow, sp, nas])
+
+  }, [dow, sp, nas])
+
   const [indexes, setIndexes] = useState([dow, sp, nas])
   const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "12px"})
 
@@ -96,6 +101,7 @@ const HeadTable = () => {
               <TableRow
                 key={index.sym}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                
               >
                 <TableCell style={cellStyle} align="left">{index.sym}</TableCell>
                 <TableCell style={cellStyle} align="left">{index.price}</TableCell>
