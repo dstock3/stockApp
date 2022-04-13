@@ -13,10 +13,27 @@ const HeadTable = () => {
   const [dow, setDow] = useState({ sym: 'Dow', price: null, change: null, percent: null, arrow: null })
   const [sp, setSp] = useState({ sym: 'S&P 500', price: null, change: null, percent: null, arrow: null })
   const [nas, setNas] = useState({ sym: 'Nasdaq', price: null, change: null, percent: null, arrow: null })
+  
+  const processIndexData = (indexData, indexState, setData) => {
+    let arrowValue
+    let changeValue
+    if (indexData.yesterday > indexData.today) {
+      arrowValue = "down"
+      changeValue = indexData.yesterday - indexData.today
+    } else {
+      arrowValue = "up"
+      changeValue = indexData.today - indexData.yesterday
+    }
+    let percentChange = (indexData.today - indexData.yesterday) / indexData.yesterday * 100
+
+    setData({...indexState, price: indexData.today.toFixed(2), change: changeValue.toFixed(2), percent: percentChange.toFixed(2), arrow: arrowValue })
+
+  }
+
   useEffect(()=> {
     const apiKey = 'ce5445893c37418a9ee00568eb67e13c'
 
-    let apiCall = `https://api.twelvedata.com/time_series?symbol=DJI,SPX,NDAQ&interval=1day&apikey=${apiKey}`
+    let apiCall = `https://api.twelvedata.com/time_series?symbol=DJI,SPX,IXIC&interval=1day&apikey=${apiKey}`
 
     fetch(apiCall)
       .then(
@@ -30,49 +47,22 @@ const HeadTable = () => {
               yesterday: parseFloat(data.DJI.values[1].close),
               today: parseFloat(data.DJI.values[0].close)
             }
-            let dowArrowValue
-            let dowChangeValue
-            if (DowData.yesterday > DowData.today) {
-              dowArrowValue = "down"
-              dowChangeValue = DowData.yesterday - DowData.today
-            } else {
-              dowArrowValue = "up"
-              dowChangeValue = DowData.today - DowData.yesterday
-            }
-            
-            setDow({ sym: 'Dow', price: DowData.today.toFixed(2), change: dowChangeValue.toFixed(2), percent: 0.80, arrow: dowArrowValue })
+            processIndexData(DowData, dow, setDow)
 
-            let nasData = {
-              yesterday: parseFloat(data.NDAQ.values[1].close),
-              today: parseFloat(data.NDAQ.values[0].close)
-            }
-            let nasArrowValue
-            let nasChangeValue
-            if (nasData.yesterday > nasData.today) {
-              nasArrowValue = "down"
-              nasChangeValue = nasData.yesterday - nasData.today
-            } else {
-              nasArrowValue = "up"
-              nasChangeValue = nasData.today - nasData.yesterday
-            }
 
-            setNas({ sym: 'Nasdaq', price: nasData.today.toFixed(2), change: nasChangeValue.toFixed(2), percent: 2.05, arrow: nasArrowValue })
+            let NasData = {
+              yesterday: parseFloat(data.IXIC.values[1].close),
+              today: parseFloat(data.IXIC.values[0].close)
+            }
+            processIndexData(NasData, nas, setNas)
 
-            let spxData = {
+
+            let SpxData = {
               yesterday: parseFloat(data.SPX.values[1].close),
               today: parseFloat(data.SPX.values[0].close)
             }
-            let spxArrowValue
-            let spxChangeValue
-            if (spxData.yesterday > spxData.today) {
-              spxArrowValue = "down"
-              spxChangeValue = spxData.yesterday - spxData.today
-            } else {
-              spxArrowValue = "up"
-              spxChangeValue = spxData.today - spxData.yesterday
-            }
+            processIndexData(SpxData, sp, setSp)
 
-            setSp({ sym: 'S&P 500', price: spxData.today.toFixed(2), change: spxChangeValue.toFixed(2), percent: 2.05, arrow: spxArrowValue })
 
           }
       )
@@ -91,7 +81,8 @@ const HeadTable = () => {
   }, [dow, sp, nas])
 
   const [indexes, setIndexes] = useState([dow, sp, nas])
-  const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "12px"})
+  const [cellStyle, setCellStyle] = useState({lineHeight: 1.6, padding: "11px"})
+
 
   return (
       <TableContainer id="head-table-container" component={Paper}>
@@ -103,9 +94,18 @@ const HeadTable = () => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 
               >
-                <TableCell style={cellStyle} align="left">{index.sym}</TableCell>
+                <TableCell style={{minWidth: "65px", lineHeight: 1.6, padding: "11px", fontWeight: "bold"}} align="left">{index.sym}</TableCell>
                 <TableCell style={cellStyle} align="left">{index.price}</TableCell>
-                <TableCell style={cellStyle} align="left">{index.change}</TableCell>
+                
+                {index.arrow==="up" ?
+                   <TableCell style={{lineHeight: 1.6, padding: "11px", color: "green", fontWeight: "bold"}} align="left">{index.change}</TableCell>:
+                   <TableCell style={{lineHeight: 1.6, padding: "11px", color: "red", fontWeight: "bold"}} align="left">{index.change}</TableCell>
+                }
+                {index.arrow==="up" ?
+                   <TableCell style={{lineHeight: 1.6, padding: "11px", color: "green", fontWeight: "bold"}} align="left">{index.percent}%</TableCell>:
+                   <TableCell style={{lineHeight: 1.6, padding: "11px", color: "red", fontWeight: "bold"}} align="left">{index.percent}%</TableCell>
+                }
+
                 <TableCell style={cellStyle} align="left">{
                   index.arrow==="up" ? 
                     <img className="arrow-indicator" src={LineGoesUp} alt="trending up"></img> :

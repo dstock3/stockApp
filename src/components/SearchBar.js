@@ -3,17 +3,16 @@ import { TextField } from "@mui/material";
 import SearchLogo from "../assets/search.svg";
 import "../css/Search.css";
 
-const SearchBar = ({setInputField, sym, setXValues, setYValues, setErrorState}) => {
+const SearchBar = ({setInputField, sym, setXValues, setYValues, setErrorState, stockName, setName}) => {
     const [searchField, setSearchField] = useState("")
     const [stockData, setStockData] = useState(null)
 
     useEffect(()=> {
         if (sym) {
-            const apiKey = 'EFBSPV0418NR9CSL'
+            setName(null)
+            let twelveCall = `https://api.twelvedata.com/stocks`
         
-            let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
-            
-            fetch(apiCall)
+            fetch(twelveCall)
                 .then(
                     function(response) {
                         return response.json()
@@ -21,35 +20,65 @@ const SearchBar = ({setInputField, sym, setXValues, setYValues, setErrorState}) 
                 )
                 .then(
                     function(data) {
-                        let metadata = data["Meta Data"]
-                        let current = metadata["3. Last Refreshed"].slice(0,10);
-                        let timeSeries = data["Time Series (Daily)"]
-                        let currentData
-                        let xValuesArray = []
-                        let yValuesArray = []
-                        
-                        for (let prop in timeSeries) {
-                            if (prop === current) {
-                                currentData = timeSeries[prop]
-                                setStockData(currentData)
-                            }
-                            xValuesArray.push(prop)
-                            yValuesArray.push(timeSeries[prop]["4. close"])
+        
+                    for (let prop in data) {
+                        for (let newProp in data[prop]) {
+                        if (data[prop][newProp].symbol === sym) {
+                            setName(data[prop][newProp].name)
                         }
-                        setXValues(xValuesArray)
-                        setYValues(yValuesArray)
-                        setErrorState(false)
+                        }
+                    }
                     }
                 )
                 .catch(
                     function(err) {
                         console.log(err)
-                        setErrorState(true)
-
                     }
                 )
         }
     }, [sym])
+
+    useEffect(()=> {
+        const apiKey = 'EFBSPV0418NR9CSL'
+        
+        let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
+        
+        fetch(apiCall)
+            .then(
+                function(response) {
+                    return response.json()
+                }
+            )
+            .then(
+                function(data) {
+                    let metadata = data["Meta Data"]
+                    let current = metadata["3. Last Refreshed"].slice(0,10);
+                    let timeSeries = data["Time Series (Daily)"]
+                    let currentData
+                    let xValuesArray = []
+                    let yValuesArray = []
+                    
+                    for (let prop in timeSeries) {
+                        if (prop === current) {
+                            currentData = timeSeries[prop]
+                            setStockData(currentData)
+                        }
+                        xValuesArray.push(prop)
+                        yValuesArray.push(timeSeries[prop]["4. close"])
+                    }
+                    setXValues(xValuesArray)
+                    setYValues(yValuesArray)
+                    setErrorState(false)
+                }
+            )
+            .catch(
+                function(err) {
+                    console.log(err)
+                    setErrorState(true)
+
+                }
+            )
+    }, [stockName])
 
     const searchChangeHandler = e => {
         setSearchField(e.target.value);

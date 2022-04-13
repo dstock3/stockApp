@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Plot from 'react-plotly.js';
 import '../css/Plot.css'
 
-const NewPlot = ({className, label, xValues, yValues, errorState}) => {
+const NewPlot = ({stockName, className, label, xValues, yValues, errorState}) => {
     const [range, setRange] = useState({xValues, yValues});
     const [buttonArray, setButtonArray] = useState(["", "", "", "selected"])
     const [plotDim, setPlotDim] = useState({width: 720, height: 440})
@@ -41,7 +41,7 @@ const NewPlot = ({className, label, xValues, yValues, errorState}) => {
     if (label && (!errorState)) {
         return (
             <div className="plot-container">
-                <h2 className="plot-label">{label}</h2>
+                <h2 className="plot-label">{stockName} ({label})</h2>
                 <Plot
                     className={className}
                     data={[
