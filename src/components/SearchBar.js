@@ -74,7 +74,7 @@ const SearchBar = ({setInputField, sym, setXValues, setYValues, setErrorState, s
             .catch(
                 function(err) {
                     console.log(err)
-                    setErrorState(true)
+                    //setErrorState(true)
 
                 }
             )
