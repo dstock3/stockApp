@@ -38,3 +38,13 @@
     cursor: pointer;
     margin: auto;
 }
+
+
+@media only screen and (max-width: 800px) {
+
+    .search-bar {
+        width: 85%;
+
+    }
+
+}
