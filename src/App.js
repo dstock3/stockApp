@@ -12,20 +12,21 @@ const App = () => {
   const [yValues, setYValues] = useState([])
   const [errorState, setErrorState] = useState(false)
   const [stockName, setName] = useState(null)
+  const [stockInfo, setStockInfo] = useState(null)
 
   return (
     <div className="App">
       <header className="head-nav">
         <nav className="head-subcontanier">
           <h1 className="head-title">MarketQuest</h1>
-          <SearchBar setInputField={setInputField} sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState} stockName={stockName} setName={setName} />
+          <SearchBar setInputField={setInputField} sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState} setName={setName} setStockInfo={setStockInfo} />
         </nav>
         <HeadTable />
       </header>
 
       <main>
         <Sidebar setInputField={setInputField} />
-        <NewPlot stockName={stockName} className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} />
+        <NewPlot stockName={stockName} className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} stockInfo={stockInfo} />
       </main>
 
       <footer>

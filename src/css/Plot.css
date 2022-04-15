@@ -1,14 +1,42 @@
 .plot-container {
     margin-top: 15px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: rgb(166,191,244);
     min-width: 40%;
     height: fit-content;
     border: 3px solid #1976d2;
     border-radius: 6px;
     box-shadow: 1px 1px 1px 1px #0000005e;
+}
+
+.plot-subcontainer {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stock-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.stock-info {
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 5px;
+    background-color: #125495;
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+}
+
+.stock-info-line-item {
+    margin-bottom: 5px;
 }
 
 .plot-label {
@@ -56,11 +84,13 @@
     margin-top: 15px;
     margin-bottom: 15px;
     text-align: center;
+    width: 100%;
 }
 
 @media only screen and (max-width: 800px) {
     .plot-container {
         width: 98%;
+        flex-direction: column;
     }
 
     .range-button {
