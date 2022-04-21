@@ -20,6 +20,7 @@
     font-weight: bold;
     margin-bottom: 10px;
     margin-top: 5px;
+    font-size: 1.25em;
 }
 
 .stock-info {
@@ -33,6 +34,7 @@
     height: fit-content;
     width: fit-content;
     padding: 5px;
+    font-size: 1.1em;
 }
 
 .stock-info-line-item {
@@ -91,9 +93,27 @@
     .plot-container {
         width: 98%;
         flex-direction: column;
+        align-items: center;
+    }
+
+    .plot-subcontainer {
+        margin-left: unset;
+
     }
 
     .range-button {
         margin-right: 5px;
+    }
+
+    .range-button-container {
+        width: unset;
+    }
+
+    .stock-info {
+        min-width: fit-content;
+        width: 75%;
+        margin-left: unset;
+        margin-right: unset;
+        margin-bottom: 15px;
     }
 }
