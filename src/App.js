@@ -5,6 +5,7 @@ import HeadTable from './components/HeadTable';
 import NewPlot from './components/NewPlot';
 import SearchBar from './components/SearchBar';
 import Sidebar from './components/Sidebar';
+import Loading from './components/Loading';
 
 const App = () => {
   const [inputField, setInputField] = useState("");
@@ -27,7 +28,10 @@ const App = () => {
 
       <main>
         <Sidebar setInputField={setInputField} />
-        <NewPlot stockName={stockName} className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} stockInfo={stockInfo} />
+        {isLoading ?
+          <Loading /> :
+          <NewPlot stockName={stockName} className={"search-plot"} label={inputField} xValues={xValues} yValues={yValues} errorState={errorState} stockInfo={stockInfo} />
+        }
       </main>
 
       <footer>
