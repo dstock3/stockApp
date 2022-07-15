@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import SearchLogo from "../assets/search.svg";
 import "../css/Search.css";
 
-const SearchBar = ({ setInputField, sym, setXValues, setYValues, setErrorState, setName, setStockInfo }) => {
+const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, setErrorState, setName, setStockInfo }) => {
     const [searchField, setSearchField] = useState("")
     const [stockData, setStockData] = useState(null)
 
@@ -40,6 +40,7 @@ const SearchBar = ({ setInputField, sym, setXValues, setYValues, setErrorState, 
 
     useEffect(()=> {
         if (sym) {
+            setIsLoading(true)
             const apiKey = 'EFBSPV0418NR9CSL'
     
             let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
@@ -72,12 +73,14 @@ const SearchBar = ({ setInputField, sym, setXValues, setYValues, setErrorState, 
                         setXValues(xValuesArray)
                         setYValues(yValuesArray)
                         setErrorState(false)
+                        setIsLoading(false)
                     }
                 )
                 .catch(
                     function(err) {
                         console.log(err)
                         setErrorState(true)
+                        setIsLoading(false)
                     }
                 )
         }

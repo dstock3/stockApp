@@ -13,13 +13,14 @@ const App = () => {
   const [errorState, setErrorState] = useState(false)
   const [stockName, setName] = useState(null)
   const [stockInfo, setStockInfo] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <div className="App">
       <header className="head-nav">
         <nav className="head-subcontanier">
           <h1 className="head-title">MarketQuest</h1>
-          <SearchBar setInputField={setInputField} sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState} setName={setName} setStockInfo={setStockInfo} />
+          <SearchBar setIsLoading={setIsLoading} setInputField={setInputField} sym={inputField} setXValues={setXValues} setYValues={setYValues} setErrorState={setErrorState} setName={setName} setStockInfo={setStockInfo} />
         </nav>
         <HeadTable />
       </header>
