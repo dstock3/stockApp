@@ -1,19 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const Loading = ({isMini}) => {
-    if (isMini) {
-        return (
-            <div className="loading-container">
-                <div className="mini-spinner"></div>
-            </div>
-          )
-    } else {
-        return (
-            <div className="loading-container">
-                <div className="spinner"></div>
-            </div>
-          )
-    }
-}
+const Loading = ({ isMini }) => (
+  <div className="loading-container">
+    <div className={isMini ? 'mini-spinner' : 'spinner'}></div>
+  </div>
+);
 
-export default Loading
+export default Loading;
