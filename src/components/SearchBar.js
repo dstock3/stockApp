@@ -41,9 +41,9 @@ const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, s
     useEffect(()=> {
         if (sym) {
             setIsLoading(true)
-            const apiKey = 'EFBSPV0418NR9CSL'
+            const apiKey = '5XQTQM06DOMEV5HV'
     
-            let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${sym}&apikey=${apiKey}`
+            let apiCall = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${sym}&apikey=${apiKey}`
             
             fetch(apiCall)
                 .then(
@@ -53,6 +53,7 @@ const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, s
                 )
                 .then(
                     function(data) {
+                        console.log(data)
                         let metadata = data["Meta Data"]
                         let current = metadata["3. Last Refreshed"].slice(0,10);
                         let timeSeries = data["Time Series (Daily)"]
