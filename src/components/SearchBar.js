@@ -3,9 +3,20 @@ import { TextField } from "@mui/material";
 import SearchLogo from "../assets/search.svg";
 import "../css/Search.css";
 
-const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, setErrorState, setName, setStockInfo }) => {
-    const [searchField, setSearchField] = useState("")
-    const [stockData, setStockData] = useState(null)
+const SearchBar = ({ 
+    setIsLoading, 
+    setInputField, 
+    sym, 
+    setXValues, 
+    setYValues, 
+    setErrorState, 
+    setName, 
+    setStockInfo 
+  }) => { 
+
+    const [searchField, setSearchField] = useState("");
+    const [stockData, setStockData] = useState({ data: null });
+
 
     useEffect(()=> {
         if (sym) {
@@ -61,15 +72,16 @@ const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, s
                         let xValuesArray = []
                         let yValuesArray = []
                         
-                        for (let prop in timeSeries) {
-                            if (prop === current) {
-                                currentData = timeSeries[prop]
-                                setStockData(currentData)
+                        for (const [key, value] of Object.entries(timeSeries)) {
+                            if (key === current) {
+                                currentData = value;
+                                setStockData(currentData);
                             }
-                            
-                            xValuesArray.push(prop)
-                            yValuesArray.push(timeSeries[prop]["4. close"])
+                        
+                            xValuesArray.push(key);
+                            yValuesArray.push(value["4. close"]);
                         }
+                        
                         setStockInfo(currentData)
                         setXValues(xValuesArray)
                         setYValues(yValuesArray)
@@ -98,7 +110,10 @@ const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, s
     }
 
     return (
-        <form className="search-bar" onSubmit={searchSubmit}>
+        <form className="search-bar" onSubmit={(e) => {
+            setInputField(searchField);
+            e.preventDefault();
+        }}>
             <span onClick={searchSubmit} className="search-button">
                 <img className="search-icon" src={SearchLogo} alt="magnifying glass logo"></img>
             </span>
@@ -109,7 +124,9 @@ const SearchBar = ({ setIsLoading, setInputField, sym, setXValues, setYValues, s
                 id="outlined-basic"
                 onChange={searchChangeHandler}
                 label="Search"
+                value={searchField}
             />
+
         </form>
     );
 };
