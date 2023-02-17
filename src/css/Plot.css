@@ -1,10 +1,11 @@
 .plot-container {
     margin-top: 15px;
     display: flex;
-    background-color: rgb(166,191,244);
+    background-color: rgb(17, 17, 17);
+    color: white;
     min-width: 40%;
     height: fit-content;
-    border: 3px solid #1976d2;
+    border: 3px solid #000000;
     border-radius: 6px;
     box-shadow: 1px 1px 1px 1px #0000005e;
 }
@@ -29,7 +30,7 @@
     margin-left: 15px;
     margin-right: 15px;
     border-radius: 5px;
-    background-color: #125495;
+    background-color: rgb(0, 0, 0);
     color: white;
     height: fit-content;
     width: fit-content;
@@ -51,7 +52,7 @@
     padding-inline: 5px;
     height: 25px;
     border-radius: 5px;
-    background-color: #125495;
+    background-color: #000000;
     font-family: sans-serif;
     box-shadow: 1px 1px 1px 1px #0000005e;
     margin-bottom: 7px;
@@ -59,19 +60,19 @@
 }
 
 .range-button {
-    background-color: #125495;
+    background-color: #000000;
     color: white;
     padding: 5px;
     padding-inline: 7px;
     border: none;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px 1px #0000005e;
+    box-shadow: 2px 2px 2px 2px #0000005e;
     cursor: pointer;
 }
 
 .selected {
     font-weight: bold;
-    background-color: #1770c8;
+    background-color: #2e2e2e;
 }
 
 .range-button-container {

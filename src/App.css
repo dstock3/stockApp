@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: rgb(199, 213, 241);
+    background-color: rgb(17, 17, 17);
     font-family: 'Roboto Condensed', sans-serif;
 
 }
@@ -22,15 +22,15 @@ main {
     align-items: center;
     justify-content: center;
     height: 20vh;
-    background-color: rgb(199, 213, 241);
-    border-bottom: 2px solid #1976d2;;
+    background-color: rgb(0, 0, 0);
+    border-bottom: 2px solid #000000;;
     box-shadow: 0px 2px 0px 0px #0000005e;
 }
 
 
 footer {
     height: 100px;
-    background-color: #125495;
+    background-color: #000000;
     display: flex;
     align-items: center;
 }

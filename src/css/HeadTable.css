@@ -1,10 +1,13 @@
 #head-table-container {
     height: 155px;
     width: 350px;
-    border: 3px solid #1976d2;
+    border: 3px solid #000000;
     border-radius: 6px;
     margin-left: 15px;
     overflow: hidden;
+    box-shadow: 3px 3px 3px 3px #0000007b;
+    background-color: rgb(17, 17, 17);
+    color: white;
 }
 
 .head-subcontanier {
@@ -15,11 +18,12 @@
 
 .head-title {
     font-family: Arial, Helvetica, sans-serif;
-    color: #145ea8;
+    color: #ffffff;
     font-size: 1.75em;
     font-style: italic;
     font-weight: bold;
     margin-bottom: 7px; 
+    text-shadow: 3px 3px 3px 3px #0000007b;
 }
 
 .head-table-data {
@@ -33,12 +37,12 @@
 
 .up {
     font-weight: bold;
-    color: green;
+    color: rgb(4, 185, 4);
 }
 
 .down {
     font-weight: bold;
-    color: red;
+    color: rgb(232, 6, 6);
 }
 
 @media only screen and (max-width: 800px) {

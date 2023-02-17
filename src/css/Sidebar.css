@@ -7,10 +7,11 @@
     margin-left: 10%;
     height: 95%;
     width: 225px;
-    border: 3px solid #1976d2;
+    border: 3px solid #000000;
     border-radius: 5px;
-    box-shadow: 0px 2px 0px 0px #0000005e;
-    background-color: rgb(166,191,244);
+    box-shadow: 2px 2px 2px 2px #0000005e;
+    background-color: rgb(17, 17, 17);
+    color: white;
 }
 
 .side-head {
@@ -21,7 +22,7 @@
 }
 
 .dec-line {
-    border-bottom: 3px solid #1976d2;
+    border-bottom: 3px solid white;
     width: 75%;
     margin-bottom: 15px;
 }
@@ -47,7 +48,7 @@
 
 .item-selected {
     border-radius: 5px;
-    background-color: #125495;
+    background-color: #000000;
     color: white;
     font-weight: bold;
 
